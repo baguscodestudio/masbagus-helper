@@ -1,0 +1,24 @@
+{
+  "name": "bagus-bot",
+  "version": "0.0.1",
+  "description": "Baguscodestudio Discord Bot",
+  "main": "main.js",
+  "scripts": {
+    "dev": "nodemon main.js"
+  },
+  "author": "baguscodestudio",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^0.12.0",
+    "@discordjs/rest": "^0.3.0",
+    "axios": "^0.25.0",
+    "cron": "^1.8.2",
+    "discord-api-types": "^0.26.1",
+    "discord.js": "^13.8.1",
+    "dotenv": "^16.0.0",
+    "qs": "^6.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

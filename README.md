@@ -12,9 +12,9 @@ Bot for my community discord
 ## Installation
 
 1. Make sure you have node js v16+ installed. Run `npm install`
-2. Create a .env folder and put this inside
+2. Create a .env file and put this inside
 
-```env
+```
 TOKEN =
 GUILD_ID =
 OWNER_DISCORD =

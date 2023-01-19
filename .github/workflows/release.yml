@@ -1,0 +1,32 @@
+name: 'CI'
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: develop
+
+      - name: Conventional Changelog Action
+        id: changelog
+        uses: TriPSs/conventional-changelog-action@v3
+        with:
+          output-file: CHANGELOG.md
+          version-file: ./package.json
+
+      - name: Push manifest change
+        uses: EndBug/add-and-commit@v8
+        with:
+          add: CHANGELOG.md
+          push: true
+          author_name: Manifest Bumper
+          author_email: 41898282+github-actions[bot]@users.noreply.github.com
+          message: 'chore: bump manifest version to ${{ steps.changelog.outputs.tag }}'

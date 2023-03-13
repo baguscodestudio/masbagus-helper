@@ -29,5 +29,37 @@ module.exports = {
           .then((msg) => setTimeout(() => msg.delete(), 5000));
       }
     }
+    const TAKEROLE = ['833603821149224980'];
+    if (TAKEROLE.includes(message.channelId) && !message.author.bot) {
+      if (
+        message.content.toLowerCase() == 'english' ||
+        message.content.toLowerCase() == 'indonesia'
+      ) {
+        setTimeout(() => message.delete(), 15000);
+        if (message.content.toLowerCase() == 'english') {
+          let role = await message.guild.roles.cache.find(
+            (role) => role.name === 'English'
+          );
+          message.member.roles.add(role);
+        } else if (message.content.toLowerCase() == 'indonesia') {
+          let role = message.guild.roles.cache.find(
+            (role) => role.name === 'Indonesia'
+          );
+          message.member.roles.add(role);
+        }
+        message
+          .reply(
+            `Thanks <@${message.author.id}> for taking your role! Feel free to browse the discord!`
+          )
+          .then((msg) => setTimeout(() => msg.delete(), 10000));
+      } else {
+        setTimeout(() => message.delete(), 5000);
+        message
+          .reply(
+            `<@${message.author.id}> invalid input! Please type either **english** or **indonesia**!`
+          )
+          .then((msg) => setTimeout(() => msg.delete(), 10000));
+      }
+    }
   },
 };

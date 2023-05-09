@@ -1,3 +1,18 @@
+function GetRole(role) {
+  switch (role) {
+    case 'ls custom':
+      return 'LS Custom';
+    case 'vehicle shop':
+      return 'Vehicle Shop';
+    case 'license manager':
+      return 'License Manager';
+    case 'company manager':
+      return 'Company Manager';
+    default:
+      return 'Housing';
+  }
+}
+
 module.exports = {
   name: 'messageCreate',
   async execute(message) {
@@ -52,11 +67,23 @@ module.exports = {
             `Thanks <@${message.author.id}> for taking your role! Feel free to browse the discord!`
           )
           .then((msg) => setTimeout(() => msg.delete(), 10000));
+      } else if (
+        message.content.toLowerCase() == 'vehicle shop' ||
+        message.content.toLowerCase() == 'ls custom' ||
+        message.content.toLowerCase() == 'company manager' ||
+        message.content.toLowerCase() == 'license manager' ||
+        message.content.toLowerCase() == 'housing'
+      ) {
+        setTimeout(() => message.delete(), 15000);
+        let role = await message.guild.roles.cache.find(
+          (role) => role.name === GetRole(message.content.toLowerCase())
+        );
+        message.member.roles.add(role);
       } else {
         setTimeout(() => message.delete(), 5000);
         message
           .reply(
-            `<@${message.author.id}> invalid input! Please type either **english** or **indonesia**!`
+            `<@${message.author.id}> invalid input! Please type either **english** or **indonesia** or the resource name you want to stay updated with!`
           )
           .then((msg) => setTimeout(() => msg.delete(), 10000));
       }
